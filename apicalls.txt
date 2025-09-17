@@ -1,0 +1,42 @@
+Famous-Places pipeline - POST- FORM DATA
+curl --location 'http://127.0.0.1:8000/api/v1/models/pipeline/' \
+--form 'file=@"0eb6b046b1.jpg"' \
+--form 'org_iata="YYZ"' \
+--form 'depart_date="2025-09-18"' \
+--form 'return_date="2025-09-30"'
+
+Flights Search 
+curl --location 'http://127.0.0.1:8000/api/v1/flights/search/?origin=YYZ&destination=LCY&depart_date=2025-09-15&return_date=2025-09-25'
+
+GenAI - Guide info about the place 
+curl --location 'http://127.0.0.1:8000/api/v1/genai/guide/' \
+--header 'Content-Type: application/json' \
+--data '{
+  "place": "Markham Ontario"
+}'
+
+Train Famous Places ResNet Model 
+curl --location 'http://127.0.0.1:8000/api/v1/models/train/famous_places/' \
+--header 'Content-Type: application/json' \
+--data '{
+    "epochs":1
+}'
+
+Airport Search within distance
+curl --location 'http://127.0.0.1:8000/api/v1/location/airports/?lat=51.500729&lon=-0.124625&distance=20'
+
+Get Lat Lon using GMAPS Api - Famous Place ResNet Model 
+curl --location 'http://127.0.0.1:8000/api/v1/location/fetch/?place=Big_Ben'
+
+Predict Place - Famous Place Model 
+curl --location 'http://127.0.0.1:8000/api/v1/models/predict_place/' \
+--form 'file=@"0eb6b046b1.jpg"'
+
+Predict Coordinates - yfccK model 
+curl --location 'http://127.0.0.1:8000/api/v1/models/predict_place/' \
+--form 'file=@"0eb6b046b1.jpg"' \
+--form 'model_name="yfcc26k_geolocate"'
+
+Download S3 Test Images folder
+curl --location 'http://127.0.0.1:8000/api/v1/storage/download/?folder=test_images'
+
