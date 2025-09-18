@@ -15,16 +15,15 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                sh 'pip install -r requirements.txt'
-                sh 'python manage.py test || true'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG .'
+            }
+        }
+
+        stage('Run Tests in Docker') {
+            steps {
+                sh 'docker run --rm $DOCKER_IMAGE:$DOCKER_TAG python manage.py test || true'
             }
         }
 
