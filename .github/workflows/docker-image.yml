@@ -18,4 +18,6 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag jimbrowncn/geoloc:v1.0
     - name: push image to docker hub
-      run:  docker push jimbrowncn/geoloc:v1.0
+      run:
+        docker login -u jimbrowncn -p ${{secrets.DOCKER_HUB_TOKEN}}
+        docker push jimbrowncn/geoloc:v1.0
