@@ -66,6 +66,60 @@ MODEL_REGISTRY = {
                     "White_House",
                     "statue_of_liberty"],
         "model": None
+    },
+    'mobnet_50_famous_places':{
+        "path": os.path.join(settings.BASE_DIR, "apps","models_core","models", "famous_places_model_mobnet"),
+        "classes": ["Acropolis_of_Athens",
+                    "Angkor_Wat",
+                    "Arc_de_Triomphe",
+                    "Atomium",
+                    "Berlin_Museum_Island",
+                    "Big_Ben",
+                    "Blue_Mosque",
+                    "Bodiam_Castle",
+                    "Brandenburg_Gate",
+                    "Burj_Khalifa",
+                    "Casa_Mila",
+                    "Chateau_Frontenac",
+                    "Chichen_Itza_Mexico",
+                    "Christ_the_Redeemer",
+                    "Dancing_House",
+                    "Dresden_Frauenkirche",
+                    "Eiffel_Tower",
+                    "Ephesus",
+                    "Flatiron_Building",
+                    "Gateway_Arch",
+                    "Giants_Causeway",
+                    "Golden_Gate_Bridge",
+                    "Guggenheim_Museum",
+                    "Hagia_Sophia",
+                    "Helsinki_Cathedral",
+                    "Kremlin",
+                    "Le_Centre_Pompidou",
+                    "Leaning_Tower_of_Pisa",
+                    "Lincoln_Center",
+                    "Machu_Picchu",
+                    "Milan_Cathedral",
+                    "Millau_Bridge",
+                    "Mont_St_Michel",
+                    "Musee_dOrsay",
+                    "Musee_du_Louvre",
+                    "Neuschwanstein_Castle",
+                    "Osaka_Castle",
+                    "Oxford_University",
+                    "Sagrada_Familia",
+                    "Space_Needle",
+                    "Sultan_Ahmed_Mosque",
+                    "Sydney_Harbor_Bridge",
+                    "Sydney_Opera_House",
+                    "The_Great_Sphinx",
+                    "The_Pyramids_of_Giza",
+                    "Tian_Tan_Buddha",
+                    "Tower_Bridge",
+                    "Washington_Monument",
+                    "White_House",
+                    "statue_of_liberty"],
+        "model": None
     }
 }
 
@@ -75,7 +129,7 @@ def load_model_by_name(model_name:str):
     model_info = MODEL_REGISTRY[model_name]
 
     if model_info["model"] is None:
-        if model_name == 'resnet_50_famous_places':
+        if model_name == 'resnet_50_famous_places' or model_name == 'mobnet_50_famous_places':
             model_info["model"] = keras.models.load_model(
                 model_info["path"],
                 custom_objects= {'KerasLayer':hub.KerasLayer}
